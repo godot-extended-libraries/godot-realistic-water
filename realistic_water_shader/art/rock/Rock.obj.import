@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Rock.obj-b7fd820b295f310f04cf86249f7309ed.mesh"
+
+[deps]
+
+files=[ "res://.import/Rock.obj-b7fd820b295f310f04cf86249f7309ed.mesh" ]
+
+source_file="res://realistic_water_shader/art/rock/Rock.obj"
+dest_files=[ "res://.import/Rock.obj-b7fd820b295f310f04cf86249f7309ed.mesh", "res://.import/Rock.obj-b7fd820b295f310f04cf86249f7309ed.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 0.2, 0.2, 0.2 )
+optimize_mesh=true

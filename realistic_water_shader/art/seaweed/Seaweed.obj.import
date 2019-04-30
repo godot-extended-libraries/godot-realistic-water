@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh"
+
+[deps]
+
+files=[ "res://.import/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh" ]
+
+source_file="res://realistic_water_shader/art/seaweed/Seaweed.obj"
+dest_files=[ "res://.import/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh", "res://.import/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

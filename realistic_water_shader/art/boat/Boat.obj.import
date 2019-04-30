@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh"
+
+[deps]
+
+files=[ "res://.import/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh" ]
+
+source_file="res://realistic_water_shader/art/boat/Boat.obj"
+dest_files=[ "res://.import/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh", "res://.import/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

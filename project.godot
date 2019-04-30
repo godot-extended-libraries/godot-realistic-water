@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Realistic Water Shader"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://realistic_water_shader/main.tscn"
 config/icon="res://icon.png"
 
 [display]
