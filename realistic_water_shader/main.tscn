@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://realistic_water_shader/art/ground/Ground.material" type="Material" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://realistic_water_shader/art/rock/Rock.material" type="Material" id=4]
 [ext_resource path="res://realistic_water_shader/art/water/Water.material" type="Material" id=5]
 [ext_resource path="res://realistic_water_shader/art/boat/Boat.obj" type="ArrayMesh" id=6]
-[ext_resource path="res://realistic_water_shader/core/camera.gd" type="Script" id=7]
-[ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed.material" type="Material" id=8]
-[ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed_Process.material" type="Material" id=9]
-[ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed.obj" type="ArrayMesh" id=10]
+[ext_resource path="res://realistic_water_shader/art/boat/Boat.material" type="Material" id=7]
+[ext_resource path="res://realistic_water_shader/core/camera.gd" type="Script" id=8]
+[ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed.material" type="Material" id=9]
+[ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed_Process.material" type="Material" id=10]
+[ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed.obj" type="ArrayMesh" id=11]
 
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 2 )
@@ -108,7 +109,7 @@ material/0 = ExtResource( 5 )
 editor/display_folded = true
 transform = Transform( -0.843314, 0.0223624, 0.536956, 0.00730846, 0.999518, -0.0301483, -0.537372, -0.0215001, -0.843071, 10.0811, -1.98067, -4.84802 )
 mesh = ExtResource( 6 )
-material/0 = null
+material/0 = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boat"]
 autoplay = "Idle"
@@ -117,7 +118,7 @@ anims/Idle = SubResource( 3 )
 [node name="Player" type="Spatial" parent="."]
 editor/display_folded = true
 transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 10.5587, 0, -5.10309 )
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 11.9261, 7 )
@@ -126,11 +127,11 @@ far = 512.0
 
 [node name="Seaweed" type="Particles" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.25 )
-material_override = ExtResource( 8 )
+material_override = ExtResource( 9 )
 amount = 10000
 explosiveness = 1.0
 visibility_aabb = AABB( -16, -16, -16, 32, 32, 32 )
 local_coords = false
 draw_order = 2
-process_material = ExtResource( 9 )
-draw_pass_1 = ExtResource( 10 )
+process_material = ExtResource( 10 )
+draw_pass_1 = ExtResource( 11 )

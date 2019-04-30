@@ -9,11 +9,6 @@ var camera_speed = 25.0
 
 var mouse_delta_position = Vector2()
 
-
-func _ready() -> void:
-	pass
-
-
 func _input(event: InputEvent) -> void:
 		
 	if event is InputEventMouseMotion:
@@ -23,7 +18,6 @@ func _input(event: InputEvent) -> void:
 		camera_distance -= 2.0
 	if event.is_action_pressed("player_zoom_out"):
 		camera_distance += 2.0
-
 
 func _process(delta: float) -> void:
 	
@@ -55,8 +49,5 @@ func _process(delta: float) -> void:
 		$Camera.transform = $Camera.transform.looking_at(Vector3(0.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0))
 		self.rotate_y(-mouse_delta_position.x * 0.01)
 	
-	mouse_delta_position = Vector2()
-	
-	
-	
+	mouse_delta_position = Vector2()	
 	
