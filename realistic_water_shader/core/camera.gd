@@ -1,7 +1,7 @@
 extends Spatial
 
 var camera_position = Vector3()
-var camera_angle = 75.0
+var camera_angle = 35.0
 var camera_distance = 16.0
 var camera_distance_min = 8.0
 var camera_distance_max = 32.0
