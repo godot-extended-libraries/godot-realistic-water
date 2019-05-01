@@ -15,7 +15,7 @@ Please make sure to update tests as appropriate.
 UnionBytes, Achim Menzel (alias AiYori)
 
 ## Donator
-K. S. Ernest (iFire) Lee
+K. S. Ernest (iFire) Lee (![fire](https://github.com/fire))
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
