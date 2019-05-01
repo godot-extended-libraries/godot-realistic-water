@@ -4,7 +4,7 @@ This is a demo of realistic water in Godot.
 
 ## Usage
 
-Download Godot 3.1 and open this project.
+Download Godot 3.1.1 and open this project. Godot 3.1 has a depth buffer bug.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
