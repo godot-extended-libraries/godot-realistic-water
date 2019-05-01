@@ -11,5 +11,11 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+## Creator
+UnionBytes, Achim Menzel (alias AiYori)
+
+## Donator
+K. S. Ernest (iFire) Lee
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
