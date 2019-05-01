@@ -116,11 +116,11 @@ autoplay = "Idle"
 anims/Idle = SubResource( 3 )
 
 [node name="Player" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 10.5587, 0, -5.10309 )
+transform = Transform( -0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, -0.906308, 10.5587, 0, -5.10309 )
 script = ExtResource( 8 )
 
 [node name="Camera" type="Camera" parent="Player"]
-transform = Transform( 0.418818, 0.727813, -0.543029, 0, 0.598003, 0.801494, 0.90807, -0.33568, 0.250455, -8.625, 9.837, 2.338 )
+transform = Transform( 1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 6.46098, 10.82 )
 fov = 60.0
 far = 512.0
 
