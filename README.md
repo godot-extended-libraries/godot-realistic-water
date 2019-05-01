@@ -1,5 +1,7 @@
 # Godot Realistic Water 
 
+![Godot Realistic Water](https://github.com/fire/godot-realistic-water/blob/master/Realistic%20Water%20Shader.jpg)
+
 This is a demo of realistic water in Godot.
 
 ## Usage
