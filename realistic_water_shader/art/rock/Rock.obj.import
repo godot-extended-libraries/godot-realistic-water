@@ -15,4 +15,5 @@ dest_files=[ "res://.import/Rock.obj-b7fd820b295f310f04cf86249f7309ed.mesh", "re
 
 generate_tangents=true
 scale_mesh=Vector3( 0.2, 0.2, 0.2 )
+offset_mesh=Vector3( 0, 0, 0 )
 optimize_mesh=true
