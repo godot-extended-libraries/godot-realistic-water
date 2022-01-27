@@ -19,6 +19,7 @@ compress/no_bptc_if_rgb=false
 flags/repeat=1
 flags/filter=true
 flags/mipmaps=true
+flags/anisotropic=false
 flags/srgb=2
 slices/horizontal=4
 slices/vertical=4

@@ -1,27 +1,15 @@
 /*
-Realistic Water Shader for GODOT 3.1.1
+
+Realistic Water Shader for Godot 3.4 
+
+Modified to work with Godot 3.4 with thanks to jmarceno.
 
 Copyright (c) 2019 UnionBytes, Achim Menzel (alias AiYori)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this 
-software and associated documentation files (the "Software"), to deal in the Software
-without restriction, including without limitation the rights to use, copy, modify,
-merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
-OR OTHER DEALINGS IN THE SOFTWARE.
-
--- UnionBytes <https://www.unionbytes.de/>
--- YouTube: <https://www.youtube.com/user/UnionBytes>
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-- UnionBytes 
+-- YouTube: www.youtube.com/user/UnionBytes
 */
 
 
@@ -71,7 +59,7 @@ varying vec3 	vertex_tangent;									// Vertex tangent -> Needed for refraction
 
 varying mat4 	inv_mvp; 										// Inverse ModelViewProjection matrix -> Needed for caustic projection
 
-
+ 
 // Wave function:
 vec4 wave(vec4 parameter, vec2 position, float time, inout vec3 tangent, inout vec3 binormal)
 {
@@ -99,27 +87,30 @@ void vertex()
 	vec4	vertex			 = vec4(VERTEX, 1.0);
 	vec3	vertex_position  = (WORLD_MATRIX * vertex).xyz;
 	
-			vertex_tangent 	 = vec3(0.0, 0.0, 0.0);
-		 	vertex_binormal  = vec3(0.0, 0.0, 0.0);
+	vec3 tang = vec3(0.0, 0.0, 0.0);
+	vec3 bin = vec3(0.0, 0.0, 0.0);
 	
-			vertex 			+= wave(wave_a, vertex_position.xz, time, vertex_tangent, vertex_binormal);
-			vertex 			+= wave(wave_b, vertex_position.xz, time, vertex_tangent, vertex_binormal);
-			vertex 			+= wave(wave_c, vertex_position.xz, time, vertex_tangent, vertex_binormal);
+	vertex 			+= wave(wave_a, vertex_position.xz, time, tang, bin);
+	vertex 			+= wave(wave_b, vertex_position.xz, time, tang, bin);
+	vertex 			+= wave(wave_c, vertex_position.xz, time, tang, bin);
+
+	vertex_tangent 	 = tang;
+	vertex_binormal  = bin;
+
+	vertex_position  = vertex.xyz;
+
+	vertex_height	 = (PROJECTION_MATRIX * MODELVIEW_MATRIX * vertex).z;
+
+	TANGENT			 = vertex_tangent;
+	BINORMAL		 = vertex_binormal;
+	vertex_normal	 = normalize(cross(vertex_binormal, vertex_tangent));
+	NORMAL			 = vertex_normal;
+
+	UV				 = vertex.xz * sampler_scale;
+
+	VERTEX			 = vertex.xyz;
 	
-			vertex_position  = vertex.xyz;
-	
-			vertex_height	 = (PROJECTION_MATRIX * MODELVIEW_MATRIX * vertex).z;
-	
-			TANGENT			 = vertex_tangent;
-			BINORMAL		 = vertex_binormal;
-			vertex_normal	 = normalize(cross(vertex_binormal, vertex_tangent));
-			NORMAL			 = vertex_normal;
-		
-			UV				 = vertex.xz * sampler_scale;
-	
-			VERTEX			 = vertex.xyz;
-			
-			inv_mvp = inverse(PROJECTION_MATRIX * MODELVIEW_MATRIX);
+	inv_mvp = inverse(PROJECTION_MATRIX * MODELVIEW_MATRIX);
 }
 
 
@@ -166,7 +157,7 @@ void fragment()
 			color 						*= 1.0 + pow(caustic_color.r, 1.50) * (1.0-depth_blend) * 6.0;
 
 	// Foam:
-			if(depth + VERTEX.z < foam_level && depth > vertex_height-0.1)
+			if(depth + VERTEX.z < vertex_height-0.1)
 			{
 				float foam_noise = clamp(pow(texture(foam_sampler, (uv*4.0) - uv_offset).r, 10.0)*40.0, 0.0, 0.2);
 				float foam_mix = clamp(pow((1.0-(depth + VERTEX.z) + foam_noise), 8.0) * foam_noise * 0.4, 0.0, 1.0);
