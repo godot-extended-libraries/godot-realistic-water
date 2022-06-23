@@ -28,27 +28,27 @@ uniform	vec4	wave_c			 = vec4(1.0, 1.3, 0.25, 0.9); 	// xy = Direction, z = Stee
 uniform vec2 	sampler_scale 	 = vec2(0.25, 0.25); 			// Scale for the sampler
 uniform vec2	sampler_direction= vec2(0.05, 0.04); 			// Direction and speed for the sampler offset
 
-uniform sampler2D uv_sampler : hint_aniso; 						// UV motion sampler for shifting the normalmap
+uniform sampler2D uv_sampler : hint_anisotropy; 						// UV motion sampler for shifting the normalmap
 uniform vec2 	uv_sampler_scale = vec2(0.25, 0.25); 			// UV sampler scale
 uniform float 	uv_sampler_strength = 0.04; 					// UV shifting strength
 
 uniform sampler2D normalmap_a_sampler : hint_normal;			// Normalmap sampler A
 uniform sampler2D normalmap_b_sampler : hint_normal;			// Normalmap sampler B
 
-uniform sampler2D foam_sampler : hint_black;					// Foam sampler
+uniform sampler2D foam_sampler : hint_default_black;					// Foam sampler
 uniform float 	foam_level 		 = 0.5;							// Foam level -> distance from the object (0.0 - 0.5)
 
 // Volume settings:
 uniform float 	refraction 		 = 0.075;						// Refraction of the water
 
-uniform vec4 	color_deep : hint_color;						// Color for deep places in the water, medium to dark blue
-uniform vec4 	color_shallow : hint_color;						// Color for lower places in the water, bright blue - green
+uniform vec4 	color_deep : source_color;						// Color for deep places in the water, medium to dark blue
+uniform vec4 	color_shallow : source_color;						// Color for lower places in the water, bright blue - green
 uniform float 	beers_law		 = 2.0;							// Beers law value, regulates the blending size to the deep water level
 uniform float 	depth_offset	 = -0.75;						// Offset for the blending
 
 // Projector for the water caustics:
 uniform mat4	projector;										// Projector matrix, mostly the matric of the sun / directlight
-uniform sampler2DArray caustic_sampler : hint_black;			// Caustic sampler, (Texture array with 16 Textures for the animation)
+uniform sampler2DArray caustic_sampler : hint_default_black;			// Caustic sampler, (Texture array with 16 Textures for the animation)
 
 
 // Vertex -> Fragment:
@@ -85,7 +85,7 @@ void vertex()
 	float	time			 = TIME * wave_speed;
 	
 	vec4	vertex			 = vec4(VERTEX, 1.0);
-	vec3	vertex_position  = (WORLD_MATRIX * vertex).xyz;
+	vec3	vertex_position  = (INV_VIEW_MATRIX * vertex).xyz;
 	
 	vec3 tang = vec3(0.0, 0.0, 0.0);
 	vec3 bin = vec3(0.0, 0.0, 0.0);
@@ -169,6 +169,6 @@ void fragment()
 	METALLIC = 0.1;
 	ROUGHNESS = 0.2;
 	SPECULAR = 0.2 + depth_blend_pow * 0.4;
-	NORMALMAP = normalmap;
-	NORMALMAP_DEPTH = 1.25;
+	NORMAL_MAP = normalmap;
+	NORMAL_MAP_DEPTH = 1.25;
 }

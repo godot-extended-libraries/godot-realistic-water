@@ -1,20 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh"
+uid="uid://cewrnxpc2wex"
+path="res://.godot/imported/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh"
 
 [deps]
 
-files=[ "res://.import/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh" ]
+files=["res://.godot/imported/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh"]
 
 source_file="res://realistic_water_shader/art/seaweed/Seaweed.obj"
-dest_files=[ "res://.import/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh", "res://.import/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh" ]
+dest_files=["res://.godot/imported/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh", "res://.godot/imported/Seaweed.obj-49506fd9f7c5cb742249a87f2882baeb.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,25 +1,28 @@
 [remap]
 
-importer="texture_array"
-type="TextureArray"
-path="res://.import/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.texarr"
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://dcvujep4v7k1b"
+path.etc2="res://.godot/imported/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.etc2.ctexarray"
+path.s3tc="res://.godot/imported/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.s3tc.ctexarray"
 metadata={
-"vram_texture": false
+"imported_formats": ["etc2", "s3tc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://realistic_water_shader/art/water/Caustic.png"
-dest_files=[ "res://.import/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.texarr" ]
+dest_files=["res://.godot/imported/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.etc2.ctexarray", "res://.godot/imported/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.s3tc.ctexarray"]
 
 [params]
 
-compress/mode=0
-compress/no_bptc_if_rgb=false
-flags/repeat=1
-flags/filter=true
-flags/mipmaps=true
-flags/anisotropic=false
-flags/srgb=2
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/bptc_ldr=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
 slices/horizontal=4
 slices/vertical=4

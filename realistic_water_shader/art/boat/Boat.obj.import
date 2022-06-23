@@ -1,20 +1,21 @@
 [remap]
 
 importer="wavefront_obj"
+importer_version=1
 type="Mesh"
-path="res://.import/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh"
+uid="uid://c3hpxbbsjd5c3"
+path="res://.godot/imported/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh"
 
 [deps]
 
-files=[ "res://.import/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh" ]
+files=["res://.godot/imported/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh"]
 
 source_file="res://realistic_water_shader/art/boat/Boat.obj"
-dest_files=[ "res://.import/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh", "res://.import/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh" ]
+dest_files=["res://.godot/imported/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh", "res://.godot/imported/Boat.obj-782925a75ad0a51bf15175a6d455e183.mesh"]
 
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
-offset_mesh=Vector3( 0, 0, 0 )
-octahedral_compression=true
-optimize_mesh_flags=4286
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
