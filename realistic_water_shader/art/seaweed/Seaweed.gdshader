@@ -2,8 +2,8 @@ shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx;
 
 
-uniform sampler2D albedo_sampler : hint_albedo;
-uniform sampler2D roughness_sampler : hint_white;
+uniform sampler2D albedo_sampler : source_color;
+uniform sampler2D roughness_sampler : hint_default_white;
 uniform sampler2D normal_sampler : hint_normal;
 
 uniform float	scale			= 1.0;
@@ -16,7 +16,7 @@ uniform vec2	wind_direction	= vec2(0.6 , 0.0);
 void vertex()
 {
 	vec4	vertex			 = vec4(VERTEX * scale, 1.0);
-	vec3	vertex_world	 = (WORLD_MATRIX * vertex).xyz;
+	vec3	vertex_world	 = (INV_VIEW_MATRIX * vertex).xyz;
 	
 	vec2	wind_flow		 = wind_direction * TIME * wind_speed;
 	
@@ -42,7 +42,7 @@ void fragment()
 	METALLIC = 0.2;
 	ROUGHNESS = 0.5+texture(roughness_sampler, base_uv).r*0.4;
 	SPECULAR = 0.5;
-	NORMALMAP = texture(normal_sampler, base_uv).rgb;
-	NORMALMAP_DEPTH = 0.75;
-	TRANSMISSION = vec3(0.8);
+	NORMAL_MAP = texture(normal_sampler, base_uv).rgb;
+	NORMAL_MAP_DEPTH = 0.75;
+	SSS_TRANSMITTANCE_DEPTH = 0.8;
 }

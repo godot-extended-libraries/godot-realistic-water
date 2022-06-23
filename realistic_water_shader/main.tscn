@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b3af161jlj3t3" path="res://realistic_water_shader/art/ground/Ground_R.png" id="5_1b548"]
 [ext_resource type="ArrayMesh" uid="uid://c3hpxbbsjd5c3" path="res://realistic_water_shader/art/boat/Boat.obj" id="6"]
 [ext_resource type="Script" path="res://realistic_water_shader/core/camera.gd" id="8"]
-[ext_resource type="Material" path="res://realistic_water_shader/art/seaweed/Seaweed.material" id="9"]
+[ext_resource type="Material" uid="uid://c4f7kjcmyocma" path="res://realistic_water_shader/art/seaweed/Seaweed.material" id="9"]
 [ext_resource type="Material" path="res://realistic_water_shader/art/seaweed/Seaweed_Process.material" id="10"]
 [ext_resource type="Texture2D" uid="uid://d0ubi5l7t7rdk" path="res://realistic_water_shader/art/boat/Boat_B.png" id="10_uldgf"]
 [ext_resource type="ArrayMesh" uid="uid://cewrnxpc2wex" path="res://realistic_water_shader/art/seaweed/Seaweed.obj" id="11"]
