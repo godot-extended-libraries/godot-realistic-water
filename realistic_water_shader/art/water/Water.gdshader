@@ -1,6 +1,6 @@
 /*
 
-Realistic Water Shader for Godot 3.4 
+Realistic Water Shader for Godot 4
 
 Modified to work with Godot 3.4 with thanks to jmarceno.
 
@@ -12,8 +12,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 -- YouTube: www.youtube.com/user/UnionBytes
 */
 
-
-// For this shader min. GODOT 3.1.1 is required, because 3.1 has a depth buffer bug!
 shader_type 	spatial;
 render_mode 	cull_back,diffuse_burley,specular_schlick_ggx, blend_mix;
 
@@ -133,7 +131,7 @@ void fragment()
 	vec2 	ref_uv						 = SCREEN_UV + (ref_normalmap.xy * refraction) / vertex_height;
 	
 	// Ground depth:
-	float 	depth_raw					 = texture(DEPTH_TEXTURE, ref_uv).r * 2.0 - 1.0;
+	float 	depth_raw					 = texture(DEPTH_TEXTURE, ref_uv).r;
 	float	depth						 = PROJECTION_MATRIX[3][2] / (depth_raw + PROJECTION_MATRIX[2][2]);
 			
 	float 	depth_blend 				 = exp((depth+VERTEX.z + depth_offset) * -beers_law);
@@ -157,12 +155,12 @@ void fragment()
 			color 						*= 1.0 + pow(caustic_color.r, 1.50) * (1.0-depth_blend) * 6.0;
 
 	// Foam:
-			if(depth + VERTEX.z < vertex_height-0.1)
-			{
-				float foam_noise = clamp(pow(texture(foam_sampler, (uv*4.0) - uv_offset).r, 10.0)*40.0, 0.0, 0.2);
-				float foam_mix = clamp(pow((1.0-(depth + VERTEX.z) + foam_noise), 8.0) * foam_noise * 0.4, 0.0, 1.0);
-				color = mix(color, vec3(1.0), foam_mix);
-			}
+	if (depth + VERTEX.z < vertex_height-0.1)
+	{
+		float foam_noise = clamp(pow(texture(foam_sampler, (uv*4.0) - uv_offset).r, 10.0)*40.0, 0.0, 0.2);
+		float foam_mix = clamp(pow((1.0-(depth + VERTEX.z) + foam_noise), 8.0) * foam_noise * 0.4, 0.0, 1.0);
+		color = mix(color, vec3(1.0), foam_mix);
+	}
 	
 	// Set all values:
 	ALBEDO = color;
