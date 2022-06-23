@@ -27,6 +27,7 @@ albedo_texture = ExtResource("3_byutx")
 roughness_texture = ExtResource("5_1b548")
 normal_enabled = true
 normal_texture = ExtResource("4_26xfa")
+uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="PlaneMesh" id="2"]
 size = Vector2(128, 128)
