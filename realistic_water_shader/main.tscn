@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bhi7fxahryqed"]
+[gd_scene load_steps=22 format=3 uid="uid://bhi7fxahryqed"]
 
 [ext_resource type="Environment" uid="uid://hjaqpnr21dtx" path="res://realistic_water_shader/water_env.tres" id="1"]
 [ext_resource type="Material" path="res://realistic_water_shader/art/ground/Ground.material" id="2"]
@@ -41,27 +41,6 @@ metallic_texture = ExtResource("11_dpig8")
 roughness_texture = ExtResource("13_4q3w8")
 normal_enabled = true
 normal_texture = ExtResource("12_qgead")
-
-[sub_resource type="Animation" id="3"]
-resource_name = "Idle"
-length = 7.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.020944, 2.44172, -5.15745)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5r235"]
-_data = {
-"Idle": SubResource("3")
-}
 
 [node name="Main" type="Node"]
 
@@ -130,12 +109,6 @@ surface_material_override/0 = ExtResource("5")
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 10.0811, -1.98067, -4.84802)
 mesh = ExtResource("6")
 surface_material_override/0 = SubResource("StandardMaterial3D_i6q1p")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Boat"]
-autoplay = "Idle"
-libraries = {
-"": SubResource("AnimationLibrary_5r235")
-}
 
 [node name="Player" type="Node3D" parent="."]
 transform = Transform3D(-0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, -0.906308, 10.5587, 0, -5.10309)
