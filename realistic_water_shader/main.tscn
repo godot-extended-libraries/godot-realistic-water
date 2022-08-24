@@ -48,14 +48,14 @@ length = 7.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5, 3.4, 5.1, 7.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.23287, 139.927, -5.15672), Vector3(8.63628, 145.851, 2.04763), Vector3(-9.25367, 145.768, -1.84762), Vector3(1.63063, 147.601, 0.476468), Vector3(-1.23287, 139.927, -5.15672)]
+"values": [Vector3(-0.020944, 2.44172, -5.15745)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5r235"]
@@ -127,7 +127,7 @@ mesh = SubResource("2")
 surface_material_override/0 = ExtResource("5")
 
 [node name="Boat" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.843314, 0.0223624, 0.536956, 0.00730846, 0.999518, -0.0301483, -0.537372, -0.0215001, -0.843071, 10.0811, -1.98067, -4.84802)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 10.0811, -1.98067, -4.84802)
 mesh = ExtResource("6")
 surface_material_override/0 = SubResource("StandardMaterial3D_i6q1p")
 
@@ -147,7 +147,7 @@ fov = 60.0
 far = 512.0
 
 [node name="Seaweed" type="GPUParticles3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76837e-07, 2, 1.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53674e-07, 2, 1.25)
 material_override = ExtResource("9")
 amount = 10000
 explosiveness = 1.0
