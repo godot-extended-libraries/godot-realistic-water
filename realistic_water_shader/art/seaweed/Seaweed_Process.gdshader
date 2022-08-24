@@ -2,7 +2,7 @@ shader_type particles;
 
 uniform float 	map_size = 128.0;
 
-uniform sampler2D height_sampler : hint_black;
+uniform sampler2D height_sampler : hint_default_black;
 uniform float 	height_scale	 = 1.0;
 uniform float 	height_offset	 = 0.0;
 
@@ -22,11 +22,11 @@ float height(vec2 position)
 }
 
 
-void vertex()
+void process()
 {	
 
 	vec3 pos = vec3(0.0);
-		
+	
 	pos.z = float(INDEX);
 	pos.x = mod(pos.z, rows);
 	pos.z = (pos.z - pos.x) / rows;

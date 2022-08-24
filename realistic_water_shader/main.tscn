@@ -11,12 +11,12 @@
 [ext_resource type="ArrayMesh" uid="uid://c3hpxbbsjd5c3" path="res://realistic_water_shader/art/boat/Boat.obj" id="6"]
 [ext_resource type="Script" path="res://realistic_water_shader/core/camera.gd" id="8"]
 [ext_resource type="Material" uid="uid://c4f7kjcmyocma" path="res://realistic_water_shader/art/seaweed/Seaweed.material" id="9"]
-[ext_resource type="Material" path="res://realistic_water_shader/art/seaweed/Seaweed_Process.material" id="10"]
 [ext_resource type="Texture2D" uid="uid://d0ubi5l7t7rdk" path="res://realistic_water_shader/art/boat/Boat_B.png" id="10_uldgf"]
 [ext_resource type="ArrayMesh" uid="uid://cewrnxpc2wex" path="res://realistic_water_shader/art/seaweed/Seaweed.obj" id="11"]
 [ext_resource type="Texture2D" uid="uid://dhr8qbubxcx67" path="res://realistic_water_shader/art/boat/Boat_M.png" id="11_dpig8"]
 [ext_resource type="Texture2D" uid="uid://dy2aotmu8lil0" path="res://realistic_water_shader/art/boat/Boat_N.png" id="12_qgead"]
 [ext_resource type="Texture2D" uid="uid://bh8sdyljklq6m" path="res://realistic_water_shader/art/boat/Boat_R.png" id="13_4q3w8"]
+[ext_resource type="Material" uid="uid://eobhao434nxi" path="res://realistic_water_shader/art/seaweed/Seaweed_Process.material" id="16_61onh"]
 
 [sub_resource type="PlaneMesh" id="1"]
 material = ExtResource("2")
@@ -147,12 +147,11 @@ fov = 60.0
 far = 512.0
 
 [node name="Seaweed" type="GPUParticles3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76837e-07, 2, 1.25)
 material_override = ExtResource("9")
 amount = 10000
 explosiveness = 1.0
+fixed_fps = 0
 visibility_aabb = AABB(-16, -16, -16, 32, 32, 32)
-local_coords = false
-draw_order = 2
-process_material = ExtResource("10")
+process_material = ExtResource("16_61onh")
 draw_pass_1 = ExtResource("11")
