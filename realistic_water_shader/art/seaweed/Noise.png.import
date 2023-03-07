@@ -4,23 +4,22 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cckfve822y85l"
 path.s3tc="res://.godot/imported/Noise.png-9d6582949650d5a2566b1e7385f97c29.s3tc.ctex"
-path.etc2="res://.godot/imported/Noise.png-9d6582949650d5a2566b1e7385f97c29.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc", "etc2"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://realistic_water_shader/art/seaweed/Noise.png"
-dest_files=["res://.godot/imported/Noise.png-9d6582949650d5a2566b1e7385f97c29.s3tc.ctex", "res://.godot/imported/Noise.png-9d6582949650d5a2566b1e7385f97c29.etc2.ctex"]
+dest_files=["res://.godot/imported/Noise.png-9d6582949650d5a2566b1e7385f97c29.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true

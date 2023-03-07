@@ -3,24 +3,23 @@
 importer="2d_array_texture"
 type="CompressedTexture2DArray"
 uid="uid://dcvujep4v7k1b"
-path.etc2="res://.godot/imported/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.etc2.ctexarray"
 path.s3tc="res://.godot/imported/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.s3tc.ctexarray"
 metadata={
-"imported_formats": ["etc2", "s3tc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://realistic_water_shader/art/water/Caustic.png"
-dest_files=["res://.godot/imported/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.etc2.ctexarray", "res://.godot/imported/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.s3tc.ctexarray"]
+dest_files=["res://.godot/imported/Caustic.png-8e9094a4903764d2da4e7fcea682d5ab.s3tc.ctexarray"]
 
 [params]
 
 compress/mode=2
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

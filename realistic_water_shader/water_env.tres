@@ -8,7 +8,6 @@ sky_material = SubResource("ProceduralSkyMaterial_qq5el")
 [resource]
 background_mode = 2
 background_color = Color(0.337255, 0.541176, 0.733333, 1)
-background_energy = 0.75
 sky = SubResource("Sky_vhp5j")
 reflected_light_source = 1
 tonemap_mode = 3

@@ -15,6 +15,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 shader_type 	spatial;
 render_mode 	cull_back,diffuse_burley,specular_schlick_ggx, blend_mix;
 
+uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // Wave settings:
 uniform float	wave_speed		 = 0.5; // Speed scale for the waves

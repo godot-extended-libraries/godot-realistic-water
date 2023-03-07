@@ -47,7 +47,7 @@ normal_texture = ExtResource("12_qgead")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1")
 
-[node name="DirectionalLight" type="DirectionalLight3D" parent="WorldEnvironment"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.757659, 0.503287, -0.415517, 0.633934, -0.41613, 0.651893, 0.15518, -0.757323, -0.634335, -0.0487633, 16.0945, -0.736719)
 light_color = Color(0.972549, 0.941176, 0.870588, 1)
 light_energy = 2.0
@@ -114,7 +114,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_i6q1p")
 transform = Transform3D(-0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, -0.906308, 10.5587, 0, -5.10309)
 script = ExtResource("8")
 
-[node name="Camera" type="Camera3D" parent="Player"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 6.46098, 10.82)
 fov = 60.0
 far = 512.0
