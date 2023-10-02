@@ -85,7 +85,7 @@ void vertex()
 	float	time			 = TIME * wave_speed;
 	
 	vec4	vertex			 = vec4(VERTEX, 1.0);
-	vec3	vertex_position  = (INV_VIEW_MATRIX * vertex).xyz;
+	vec3	vertex_position  = (MODEL_MATRIX * vertex).xyz;
 	
 	vec3 tang = vec3(0.0, 0.0, 0.0);
 	vec3 bin = vec3(0.0, 0.0, 0.0);
