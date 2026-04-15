@@ -20,9 +20,9 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // Wave settings:
 uniform float	wave_speed		 = 0.5; // Speed scale for the waves
-uniform vec4	wave_a			 = vec4(1.0, 1.0, 0.35, 3.0); 	// xy = Direction, z = Steepness, w = Length
-uniform	vec4	wave_b			 = vec4(1.0, 0.6, 0.30, 1.55);	// xy = Direction, z = Steepness, w = Length
-uniform	vec4	wave_c			 = vec4(1.0, 1.3, 0.25, 0.9); 	// xy = Direction, z = Steepness, w = Length
+uniform vec4	wave_a			 = vec4(1.0, 0.4, 0.35, 3.0); 	// xy = Direction, z = Steepness, w = Length
+uniform	vec4	wave_b			 = vec4(-0.1, 0.6, 0.30, 1.55);	// xy = Direction, z = Steepness, w = Length
+uniform	vec4	wave_c			 = vec4(-1.0, -0.8, 0.25, 0.9); 	// xy = Direction, z = Steepness, w = Length
 
 // Surface settings:
 uniform vec2 	sampler_scale 	 = vec2(0.25, 0.25); 			// Scale for the sampler
@@ -36,23 +36,21 @@ uniform sampler2D normalmap_a_sampler : hint_normal;			// Normalmap sampler A
 uniform sampler2D normalmap_b_sampler : hint_normal;			// Normalmap sampler B
 
 uniform sampler2D foam_sampler : hint_default_black;					// Foam sampler
-uniform float 	foam_level 		 = 0.5;							// Foam level -> distance from the object (0.0 - 0.5)
+uniform float 	foam_level 		 = 0.75;							// Foam level -> distance from the object (0.0 - 0.5)
 
 // Volume settings:
 uniform float 	refraction 		 = 0.075;						// Refraction of the water
 
-uniform vec4 	color_deep : source_color;						// Color for deep places in the water, medium to dark blue
-uniform vec4 	color_shallow : source_color;						// Color for lower places in the water, bright blue - green
+uniform vec4 	color_deep: source_color = vec4(0.322, 0.4, 0.502, 1.0);						// Color for deep places in the water, medium to dark blue
+uniform vec4 	color_shallow : source_color = vec4(0.659, 0.749, 0.761, 1.0);						// Color for lower places in the water, bright blue - green
 uniform float 	beers_law		 = 2.0;							// Beers law value, regulates the blending size to the deep water level
 uniform float 	depth_offset	 = -0.75;						// Offset for the blending
 
 // Projector for the water caustics:
-uniform mat4	projector;										// Projector matrix, mostly the matric of the sun / directlight
 uniform sampler2DArray caustic_sampler : hint_default_black;			// Caustic sampler, (Texture array with 16 Textures for the animation)
 
 
 // Vertex -> Fragment:
-varying float 	vertex_height;									// Height of the water surface
 varying vec3 	vertex_normal;									// Vertex normal -> Needed for refraction calculation
 varying vec3 	vertex_binormal;								// Vertex binormal -> Needed for refraction calculation
 varying vec3 	vertex_tangent;									// Vertex tangent -> Needed for refraction calculation
@@ -72,8 +70,8 @@ vec4 wave(vec4 parameter, vec2 position, float time, inout vec3 tangent, inout v
 	float 	f 				 = k * (dot(d, position) - c * time);
 	float 	a				 = wave_steepness / k;
 	
-			tangent			+= normalize(vec3(1.0-d.x * d.x * (wave_steepness * sin(f)), d.x * (wave_steepness * cos(f)), -d.x * d.y * (wave_steepness * sin(f))));
-			binormal		+= normalize(vec3(-d.x * d.y * (wave_steepness * sin(f)), d.y * (wave_steepness * cos(f)), 1.0-d.y * d.y * (wave_steepness * sin(f))));
+	tangent			+= normalize(vec3(1.0-d.x * d.x * (wave_steepness * sin(f)), d.x * (wave_steepness * cos(f)), -d.x * d.y * (wave_steepness * sin(f))));
+	binormal		+= normalize(vec3(-d.x * d.y * (wave_steepness * sin(f)), d.y * (wave_steepness * cos(f)), 1.0-d.y * d.y * (wave_steepness * sin(f))));
 
 	return vec4(d.x * (a * cos(f)), a * sin(f) * 0.25, d.y * (a * cos(f)), 0.0);
 }
@@ -84,12 +82,12 @@ void vertex()
 {
 	float	time			 = TIME * wave_speed;
 	
-	vec4	vertex			 = vec4(VERTEX, 1.0);
-	vec3	vertex_position  = (INV_VIEW_MATRIX * vertex).xyz;
+	vec4 vertex			 = vec4(VERTEX, 1.0);
+	vec3 vertex_position  = (MODEL_MATRIX * vertex).xyz;
 	
-	vec3 tang = vec3(0.0, 0.0, 0.0);
-	vec3 bin = vec3(0.0, 0.0, 0.0);
-	
+	vec3 tang = 	vec3(0.0, 0.0, 0.0);
+	vec3 bin = 		vec3(0.0, 0.0, 0.0);
+
 	vertex 			+= wave(wave_a, vertex_position.xz, time, tang, bin);
 	vertex 			+= wave(wave_b, vertex_position.xz, time, tang, bin);
 	vertex 			+= wave(wave_c, vertex_position.xz, time, tang, bin);
@@ -98,8 +96,6 @@ void vertex()
 	vertex_binormal  = bin;
 
 	vertex_position  = vertex.xyz;
-
-	vertex_height	 = (PROJECTION_MATRIX * MODELVIEW_MATRIX * vertex).z;
 
 	TANGENT			 = vertex_tangent;
 	BINORMAL		 = vertex_binormal;
@@ -110,7 +106,7 @@ void vertex()
 
 	VERTEX			 = vertex.xyz;
 	
-	inv_mvp = inverse(PROJECTION_MATRIX * MODELVIEW_MATRIX);
+	inv_mvp =		 inverse(PROJECTION_MATRIX * MODELVIEW_MATRIX);
 }
 
 
@@ -130,16 +126,17 @@ void fragment()
 	// Refraction UV:
 	vec3	ref_normalmap				 = normalmap * 2.0 - 1.0;
 			ref_normalmap				 = normalize(vertex_tangent*ref_normalmap.x + vertex_binormal*ref_normalmap.y + vertex_normal*ref_normalmap.z);
-	vec2 	ref_uv						 = SCREEN_UV + (ref_normalmap.xy * refraction) / vertex_height;
+	vec2 	ref_uv						 = SCREEN_UV + (ref_normalmap.xy * refraction) / -VERTEX.z;
 	
 	// Ground depth:
-	float 	depth_raw					 = texture(DEPTH_TEXTURE, ref_uv).r;
-	float	depth						 = PROJECTION_MATRIX[3][2] / (depth_raw + PROJECTION_MATRIX[2][2]);
-			
-	float 	depth_blend 				 = exp((depth+VERTEX.z + depth_offset) * -beers_law);
-			depth_blend 				 = clamp(1.0-depth_blend, 0.0, 1.0);	
+	float 	depth_raw					 = texture(DEPTH_TEXTURE, SCREEN_UV).r;
+	vec4 	depth_view					 = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, depth_raw, 1.0);
+	float 	dist						 = distance(VERTEX, depth_view.xyz / depth_view.w);
+	
+	float 	depth_blend 				 = exp((dist + depth_offset) * -beers_law);
+			depth_blend 				 = clamp(1.0 - depth_blend, 0.0, 1.0);
 	float	depth_blend_pow				 = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
-
+	
 	// Ground color:
 	vec3 	screen_color 				 = textureLod(SCREEN_TEXTURE, ref_uv, depth_blend_pow * 2.5).rgb;
 	
@@ -157,12 +154,10 @@ void fragment()
 			color 						*= 1.0 + pow(caustic_color.r, 1.50) * (1.0-depth_blend) * 6.0;
 
 	// Foam:
-	if (depth + VERTEX.z < vertex_height-0.1)
-	{
+	float foam_depth = (1.0 - min(1.0, dist / 3.0));
 		float foam_noise = clamp(pow(texture(foam_sampler, (uv*4.0) - uv_offset).r, 10.0)*40.0, 0.0, 0.2);
-		float foam_mix = clamp(pow((1.0-(depth + VERTEX.z) + foam_noise), 8.0) * foam_noise * 0.4, 0.0, 1.0);
-		color = mix(color, vec3(1.0), foam_mix);
-	}
+		float foam_mix = clamp(pow(foam_depth + foam_noise, 8.0) * foam_noise * 0.4, 0.0, 1.0);
+		color = mix(color, vec3(1.0), foam_mix * smoothstep(0.0, 1.0, foam_level - dist));
 	
 	// Set all values:
 	ALBEDO = color;
